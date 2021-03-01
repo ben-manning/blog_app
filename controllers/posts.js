@@ -5,6 +5,9 @@ const ROUTER = express.Router();
 // MODEL
 const Post = require('../models/posts.js');
 
+// MIDDLEWARE
+ROUTER.use(express.urlencoded( { extended: true } ));
+
 // POSTS
 // seed the data
 ROUTER.get('/seed', (req, res) => {
@@ -35,6 +38,22 @@ ROUTER.get('/', (req, res) => {
       res.render('posts/index.ejs', {
         posts: allPosts
       });
+    }
+  });
+});
+
+// new 
+ROUTER.get('/new', (req, res) => {
+  res.render('posts/new.ejs');
+});
+
+// create
+ROUTER.post('/', (req, res) => {
+  Post.create(req.body, (err, createdPost) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('/posts')
     }
   });
 });
