@@ -1,6 +1,9 @@
 const express = require('express');
 const APP = express();
-const PORT = 3000;
+
+require('dotenv').config();
+
+const PORT = process.env.PORT;
 
 // CONTROLLERS
 const postsController = require('./controllers/posts');
