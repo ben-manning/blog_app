@@ -11,7 +11,7 @@
   <a href="/"><p>Go to the Site Home</p></a>
   <ul>
     <% posts.forEach((post) => { %>
-      <li><%= post.title %> | <%= post.body %></li>
+      <li><a href="/posts/<%= post.id %>"><%= post.title %></a> | <%= post.body %></li>
     <% }) %>
   </ul>
 </body>

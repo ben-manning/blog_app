@@ -39,4 +39,17 @@ ROUTER.get('/', (req, res) => {
   });
 });
 
+// show
+ROUTER.get('/:id', (req, res) => {
+  Post.findById(req.params.id, (err, foundPost) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.render('posts/show.ejs', {
+        post: foundPost
+      })
+    }
+  });
+});
+
 module.exports = ROUTER;
