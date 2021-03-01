@@ -9,5 +9,10 @@
 <body>
   <h1>Posts Index Page</h1>
   <a href="/"><p>Go to the Site Home</p></a>
+  <ul>
+    <% posts.forEach((post) => { %>
+      <li><%= post.title %> | <%= post.body %></li>
+    <% }) %>
+  </ul>
 </body>
 </html>
