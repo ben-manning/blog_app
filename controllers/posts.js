@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const ROUTER = express.Router();
 
 // MODEL
@@ -7,6 +8,7 @@ const Post = require('../models/posts.js');
 
 // MIDDLEWARE
 ROUTER.use(express.urlencoded( { extended: true } ));
+ROUTER.use(methodOverride('_method'));
 
 // POSTS
 // seed the data
@@ -58,6 +60,30 @@ ROUTER.post('/', (req, res) => {
   });
 });
 
+// edit
+ROUTER.get('/:id/edit', (req, res) => {
+  Post.findById(req.params.id, (err, foundPost) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.render('posts/edit.ejs', {
+        post: foundPost
+      })
+    }
+  });
+});
+
+// put
+ROUTER.put('/:id', (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, req.body, { new: true}, (err, updatedPost) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('/posts')
+    }
+  })
+})
+
 // show
 ROUTER.get('/:id', (req, res) => {
   Post.findById(req.params.id, (err, foundPost) => {
@@ -70,5 +96,11 @@ ROUTER.get('/:id', (req, res) => {
     }
   });
 });
+
+// delete
+ROUTER.delete('/:id', (req, res) => {
+  console.log('we have it the roughte')
+  res.send('the route has been hit')
+})
 
 module.exports = ROUTER;

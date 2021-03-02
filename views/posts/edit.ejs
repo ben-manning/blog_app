@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit an existing post</title>
+</head>
+<body>
+  <h1>Edit an existing post</h1>
+  <form action="/posts/<%= post.id %>?_method=PUT" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" value="<%= post.title %>">
+    <label for="body">Body:</label>
+    <input type="text" name="body" id="body" value="<%= post.body %>">
+    <input type="submit" value="Create Post">
+  </form>
+</body>
+</html>
